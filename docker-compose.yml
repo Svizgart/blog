@@ -7,5 +7,3 @@ services:
     - 8080:8080
     volumes:
     - ./src:/usr/share/nginx/html
-    depends_on:
-    - php
