@@ -6,7 +6,7 @@ $user = 'root';
 $pass = '';
 
 try {
-    $connection  = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+    $connection = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
 }catch( PDOException $Exception ) {
     echo $Exception->getMessage() . "<br>";
 }
