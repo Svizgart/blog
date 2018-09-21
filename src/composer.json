@@ -1,0 +1,5 @@
+{
+  "config": {
+    "COMPOSER_ALLOW_SUPERUSER": 1
+  }
+}
