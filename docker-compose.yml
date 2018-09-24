@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  nginx:
+    build: nginx
+    ports:
+    - 8080:8080
+    volumes:
+    - ./src:/usr/share/nginx/html
+    depends_on:
+    - php
+
+  php:
+    build: php
+    volumes:
+    - ./src:/usr/share/nginx/html
+    - ./src:/var/www/html
+
+  mariadb:
+    image: mysql:5.7
+    volumes:
+    - ./mysql:/var/lib/mysql
+    - ./my_mysql.cnf:/etc/mysql/my_mysql.cnf
+    environment:
+    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    - MYSQL_DATABASE=blog
+    - MYSQL_USER=root
+    - MYSQL_PASSWORD=
+    ports:
+    - 127.0.0.1:3304:3306
