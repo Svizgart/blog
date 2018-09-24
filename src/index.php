@@ -1,3 +1,9 @@
+<?php
+    spl_autoload_register(function ($name)
+    {
+        include_once str_replace("\\", DIRECTORY_SEPARATOR, $name) . '.php';
+    });
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,8 +39,6 @@
 
 <body>
 
-<?php include_once 'PDO_connection.php'; ?>
-
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
@@ -61,16 +65,23 @@
             </div>
         </div>
     </header>
+<?php
+$posts = new Controllers\PostsController();
+$posts->index();
+foreach ($posts as $post){
 
+}
+?>
     <!-- Main Content -->
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
+
                 <div class="post-preview">
                     <a href="post.php">
                         <h2 class="post-title">
-                            Failure is not an option
+                            <?php //echo $posts['title']?>
                         </h2>
                         <h3 class="post-subtitle">
                             Many say exploration is part of our destiny, but it’s actually our duty to future generations.
@@ -78,13 +89,20 @@
                     </a>
                     <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
                 </div>
+
                 <hr>
+                <div class="form-group col-xs-6">
+                    <a href="add_article.php?flag=update">
+                    <button type="submit" class="btn btn-default">Изменить</button>
+                    </a>
+                </div>
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="next">
                         <a href="#">Older Posts &rarr;</a>
                     </li>
                 </ul>
+
             </div>
         </div>
     </div>

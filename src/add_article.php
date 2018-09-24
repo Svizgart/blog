@@ -49,36 +49,33 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <p>Статья будет добавлена сразу после сохранения</p>
+                <p>Все поля обязательны для заполнения!</p>
 
-                <form name="sentMessage" id="contactForm" novalidate action="PostsController.php" method="post">
+                <form name="sentMessage" id="contactForm" novalidate action="Controllers/PostsController.php" method="POST">
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Title</label>
-                            <input type="text" class="form-control" placeholder="Title" id="name">
+                            <label>Title*</label>
+                            <input type="text" class="form-control" placeholder="Title" id="title" name="title">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Description</label>
-                            <input type="email" class="form-control" placeholder="Description">
+                            <label>Description*</label>
+                            <input type="text" class="form-control" placeholder="Description" id="description" name="description">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
 
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
-<!--                            <label>Text</label>-->
-
+                            <label>Text*</label>
                             <div id="editor">
-                                <div id='edit' style="margin-top: 30px;">
-
-                                </div>
-                                <!--<input type="text" class="form-control" placeholder="Text">-->
-                            <p class="help-block text-danger"></p>
+                                <textarea name="text" id='edit' style="margin-top: 30px;"></textarea>
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="flag" value="store">
 
                     <br>
                     <div id="success"></div>
