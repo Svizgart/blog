@@ -51,7 +51,7 @@
                 <p>Статья будет добавлена сразу после сохранения</p>
                 <p>Все поля обязательны для заполнения!</p>
 
-                <form name="sentMessage" id="contactForm" novalidate action="Controllers/PostsController.php" method="POST">
+                <form name="sentMessage" id="contactForm" novalidate action="index.php" method="POST">
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Title*</label>
@@ -75,6 +75,7 @@
                             </div>
                         </div>
                     </div>
+
                     <input type="hidden" name="flag" value="store">
 
                     <br>

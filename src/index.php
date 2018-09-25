@@ -1,8 +1,18 @@
 <?php
-    spl_autoload_register(function ($name)
-    {
-        include_once str_replace("\\", DIRECTORY_SEPARATOR, $name) . '.php';
-    });
+spl_autoload_register(function ($name)
+{
+    include_once str_replace("\\", DIRECTORY_SEPARATOR, $name) . '.php';
+});
+
+$flag = $_REQUEST['flag'] ?? null;
+
+if ("store" === $flag) {
+    $createPost = new \Controllers\PostsController;
+    $createPost->store($_POST['title'], $_POST['description'], $_POST['text']);
+}elseif ("edit" === $flag){
+    $createPost = new \Controllers\PostsController;
+    $createPost->edit($_POST['title'], $_POST['description'], $_POST['text'], $_POST['id']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,26 +24,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Clean Blog</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Theme CSS -->
-    <link href="css/clean-blog.min.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <?php include_once 'header.html'?>
 
 </head>
 
@@ -65,86 +57,48 @@
             </div>
         </div>
     </header>
-<?php
-$posts = new Controllers\PostsController();
-$posts->index();
-foreach ($posts as $post){
 
-}
-?>
     <!-- Main Content -->
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <?php
+                $getPosts = new Controllers\PostsController();
 
+                foreach ($getPosts->index() as $post):?>
 
                 <div class="post-preview">
-                    <a href="post.php">
+                    <a href="about.php?flag=show&id=<?= $post['id']?>">
                         <h2 class="post-title">
-                            <?php //echo $posts['title']?>
+                            <?= $post['title']?>
                         </h2>
                         <h3 class="post-subtitle">
-                            Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+                            <?= $post['description']?>
                         </h3>
                     </a>
-                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
+                    <p class="post-meta"><!-- Posted by <a href="#">Start Bootstrap</a> --> <?= $post['date'] ?></p>
                 </div>
 
-                <hr>
-                <div class="form-group col-xs-6">
-                    <a href="add_article.php?flag=update">
-                    <button type="submit" class="btn btn-default">Изменить</button>
-                    </a>
-                </div>
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="next">
-                        <a href="#">Older Posts &rarr;</a>
-                    </li>
-                </ul>
+                    <hr>
+                    <div class="form-group col-xs-6">
+                        <a href="edit_article.php?flag=update&id=<?= $post['id']?>">
+                            <button type="submit" class="btn btn-default">Изменить</button>
+                        </a>
+                    </div>
+                    <!-- Pager -->
+                    <ul class="pager">
+                        <li class="next">
+                            <a href="about.php?flag=show&id=<?= $post['id']?>">Posts &rarr;</a>
+                        </li>
+                    </ul>
+                <?php endforeach; ?>
+
 
             </div>
         </div>
     </div>
 
     <hr>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
-                </div>
-            </div>
-        </div>
-    </footer>
 
 <?php include_once 'footer.html'?>
 

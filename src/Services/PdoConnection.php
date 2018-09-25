@@ -11,12 +11,17 @@ class PdoConnection
     private $db = 'blog';
     private $user = 'root';
     private $password = '';
-    public $connection;
+    public static $connect;
+
 
     public function connect()
     {
+        if (self::$connect instanceof PDO) {
+            return self::$connect;
+        }
         try {
-             return new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->password);
+             self::$connect = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->password);
+             return self::$connect;
         }catch( PDOException $Exception ) {
             echo $Exception->getMessage() . "<br>";
         }
