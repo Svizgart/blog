@@ -17,7 +17,7 @@ if ("show" === $flag){
 
 <head>
 
-   <?php include_once 'header.html'?>
+   <?php include_once 'header.html' ?>
 
 </head>
 
@@ -27,7 +27,7 @@ if ("show" === $flag){
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <?php include_once 'menu.php'?>
+            <?php include_once 'menu.php' ?>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -62,7 +62,7 @@ if ("show" === $flag){
 
     <hr>
 
-    <?php include_once 'footer.html'?>
+    <?php include_once 'footer.html' ?>
 
 </body>
 

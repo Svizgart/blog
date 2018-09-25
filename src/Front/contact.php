@@ -11,7 +11,7 @@
 
     <title>Clean Blog - Contact</title>
 
-   <?php include_once 'header.html'?>
+   <?php include_once 'header.html' ?>
 
 </head>
 
@@ -21,7 +21,7 @@
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <?php include_once 'menu.php'?>
+            <?php include_once 'menu.php' ?>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -29,7 +29,7 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/contact-bg.jpg')">
+    <header class="intro-header" style="background-image: url('../img/contact-bg.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -94,7 +94,7 @@
 
     <hr>
 
-    <?php include_once 'footer.html'?>
+    <?php include_once 'footer.html' ?>
 
 </body>
 

@@ -25,7 +25,7 @@ if ("store" === $flag) {
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Clean Blog</title>
-    <?php include_once 'header.html'?>
+    <?php include_once 'Front/partials/header.html' ?>
 
 </head>
 
@@ -37,7 +37,7 @@ if ("store" === $flag) {
             <!-- Brand and toggle get grouped for better mobile display -->
 
 
-            <?php include_once 'menu.php'; ?>
+            <?php include_once 'Front/partials/menu.php'; ?>
         </div>
         <!-- /.container -->
     </nav>
@@ -100,7 +100,7 @@ if ("store" === $flag) {
 
     <hr>
 
-<?php include_once 'footer.html'?>
+<?php include_once 'Front/partials/footer.html' ?>
 
 </body>
 

@@ -11,7 +11,7 @@
 
     <title>Clean Blog - Sample Post</title>
 
-    <?php include_once 'header.html'?>
+    <?php include_once 'header.html' ?>
 
 </head>
 
@@ -21,7 +21,7 @@
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <?php include_once 'menu.php'?>
+            <?php include_once 'menu.php' ?>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -29,7 +29,7 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/post-bg.jpg')">
+    <header class="intro-header" style="background-image: url('../img/post-bg.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -73,7 +73,7 @@
                     <p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
 
                     <a href="#">
-                        <img class="img-responsive" src="img/post-sample-image.jpg" alt="">
+                        <img class="img-responsive" src="../img/post-sample-image.jpg" alt="">
                     </a>
                     <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
 
@@ -89,7 +89,7 @@
 
     <hr>
 
-    <?php include_once 'footer.html'?>
+    <?php include_once 'footer.html' ?>
 </body>
 
 </html>

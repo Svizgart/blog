@@ -7,7 +7,7 @@ spl_autoload_register(function ($name)
 $flag = $_REQUEST['flag'] ?? null;
 
 if ("update" === $flag) {
-    $onePost = new \Controllers\PostsController;
+    $onePost = new \Controllers\PostsController();
     $editPost = $onePost->update($_GET['id']);
 }
 
@@ -25,7 +25,7 @@ if ("update" === $flag) {
 
     <title>Добавть новую статью</title>
 
-    <?php include_once 'header.html';?>
+    <?php include_once 'Front/partials/header.html';?>
 
 </head>
 
@@ -36,7 +36,7 @@ if ("update" === $flag) {
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
 
-        <?php include_once 'menu.php'; ?>
+        <?php include_once 'Front/partials/menu.php'; ?>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
@@ -111,7 +111,7 @@ if ("update" === $flag) {
 
 <hr>
 
-<?php include_once 'footer.html'?>
+<?php include_once 'Front/partials/footer.html' ?>
 
 </body>
 
