@@ -37,7 +37,7 @@
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <?php include_once 'header.html'?>
+            <?php include_once 'header.php' ?>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->

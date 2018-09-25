@@ -3,21 +3,18 @@
 namespace Controllers;
 
 use Services\PdoConnection;
+use Model\Posts;
 
-//include_once 'PDO_connection.php';
+
+//include_once '../Models/Posts.php';
 
 class PostsController
 {
-    /**
-     * @return mixed
-     */
     public function index()
     {
-        $db = new PdoConnection();
-        $db->connect();
-//var_dump($db);
+        $db = new Posts();
         $spl = 'SELECT * FROM posts';
-        print_r( $posts = $db->connect()->query($spl));
+        $posts = $db->connect()->query($spl);
     }
 
     public function store($title, $description, $text)

@@ -11,7 +11,7 @@
 
     <title>Добавть новую статью</title>
 
-<?php include_once 'header.html';?>
+<?php include_once 'header.php';?>
 
 </head>
 

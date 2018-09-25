@@ -1,8 +1,16 @@
 <?php
-    spl_autoload_register(function ($name)
+    /*spl_autoload_register(function ($name)
     {
         include_once str_replace("\\", DIRECTORY_SEPARATOR, $name) . '.php';
-    });
+    });*/
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+spl_autoload_register(function ($name)
+{
+    include_once str_replace("\\", DIRECTORY_SEPARATOR, $name) . '.php';
+});
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +74,7 @@
         </div>
     </header>
 <?php
-$posts = new Controllers\PostsController();
+$posts = new \Controllers\PostsController();
 $posts->index();
 foreach ($posts as $post){
 
