@@ -1,4 +1,3 @@
-
 <div class="navbar-header page-scroll">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -18,12 +17,22 @@
         <!--<li>
             <a href="post.php">Sample Post</a>
         </li>-->
-        <!--<li>
-            <a href="contact.php">Contact</a>
-        </li>-->
+        <?php if ( isset($_SESSION['username'])):?>
         <li>
             <a href="../../add_article.php">добавить статью</a>
         </li>
+        <?php endif; ?>
+
+        <?php
+        if (isset($_SESSION['username'])):?>
+        <li>
+            <a href="../../index.php?exit=1">Выйти</a>
+        </li>
+        <?php else: ?>
+        <li>
+            <a href="../../form_aut.php">Войти</a>
+        </li>
+        <?php endif; ?>
     </ul>
 </div>
 <!-- /.navbar-collapse -->

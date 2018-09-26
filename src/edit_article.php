@@ -1,4 +1,5 @@
 <?php
+session_start();
 spl_autoload_register(function ($name)
 {
     include_once str_replace("\\", DIRECTORY_SEPARATOR, $name) . '.php';
@@ -10,8 +11,9 @@ if ("update" === $flag) {
     $onePost = new \Controllers\PostsController();
     $editPost = $onePost->update($_GET['id']);
 }
-
-?>
+ if ( !isset($_SESSION['username'])){
+    header('Location: /form_aut.php');
+}?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -20,7 +20,7 @@ class PostsController
     {
         return $this->db
             ->connect()
-            ->query('SELECT * FROM posts')
+            ->query('SELECT * FROM posts ORDER BY date DESC')
             ->fetchAll();
     }
 
@@ -34,18 +34,59 @@ class PostsController
 
     public function store($title, $description, $text)
     {
-        $sql = "INSERT INTO posts (title, description, text, date) VALUE (:title, :description, :text, :data_post)";
-        $query = $this->db->connect()->prepare($sql);
+        if (isset($_SESSION['username'])){
+            $error = $this->validate($title, $description, $text);
+            $sql = "INSERT INTO posts (title, description, text, date) VALUE (:title, :description, :text, :data_post)";
+            $query = $this->db->connect()->prepare($sql);
 
-        if (!empty($title) && !empty($description) && !empty($text)) {
-            $query->execute([
-                ':title' => trim($title),
-                ':description' => trim($description),
-                ':text' => trim($text),
-                ':data_post' => date('Y-m-d H-i-s'),
-            ]);
+            if (!empty($title) && !empty($description) && !empty($text) && $error ===[]) {
+                $query->execute([
+                    ':title' => trim($title),
+                    ':description' => trim($description),
+                    ':text' => trim($text),
+                    ':data_post' => date('Y-m-d H-i-s'),
+                ]);
+
+                header('Location: /index.php');
+            }
         }
     }
+
+    private function validate($title, $description, $text)
+    {
+        $error = [];
+
+        if (trim($title) === '') {
+            $error[] = "Поле title не должно быть пустым";
+        }
+        if (mb_strlen(trim($title))<5) {
+            $error[] = "Поле title не может быть короче 5-и символов";
+        }
+        if (mb_strlen(strip_tags(trim($title)))>100) {
+            $error[] = "Поле title не может быть дленее 100 символов";
+        }
+        if (mb_strlen(strip_tags(trim($description))) === '') {
+            $error[] = "Поле description не должно быть пустым";
+        }
+        if (mb_strlen(strip_tags(trim($description)))<10) {
+            $error[] = "Поле description не может быть короче 10-и символов";
+        }
+        if (mb_strlen(strip_tags(trim($description)))>250) {
+            $error[] = "Поле description не может быть дленее 250 символов";
+        }
+        if (trim($text) === '') {
+            $error[] = "Поле text не должно быть пустым";
+        }
+        if (mb_strlen(trim($text))<10) {
+            $error[] = "Поле text не может быть короче 10-и символов";
+        }
+        if (mb_strlen(trim($text))>65535) {
+            $error[] = "Поле text не может быть дленее 65535 символов";
+        }
+
+        return $error;
+    }
+
 
     function update($id)
     {
@@ -57,11 +98,15 @@ class PostsController
 
     public function edit(string $title, string $description, string $text, int $id)
     {
-        if (!empty($title) && !empty($description) && !empty($text) && !empty($id)) {
+        $error = $this->validate($title, $description, $text);
+        //var_dump($error);
+        $data_pas = date('Y-m-d H-i-s');
 
-            $data_pas = date('Y-m-d H-i-s');
+        if (!empty($id) && !empty($title) && !empty($description)  && !empty($text) && $error === []) {
 
-            $sql = "UPDATE posts SET title = :title, description = :description, text = :text_post, date = :date_pas where id = :id";
+            $sql = "UPDATE posts 
+                    SET title = :title, description = :description, text = :text_post, date = :date_pas 
+                    where id = :id";
             $stmt = $this->db
                 ->connect()
                 ->prepare($sql);
@@ -71,10 +116,15 @@ class PostsController
             $stmt->bindValue(':text_post', $text);
             $stmt->bindValue(':date_pas', $data_pas);
             $stmt->bindValue(':id', $id);
-            $stmt->execute();
+
+            if ($stmt->execute()) {
+                header('Location: /index.php');
+            };
 
         }else{
-            echo 'не все поля заполнены';
+
+            var_dump($error);
+           // echo 'не все поля заполнены';
         }
     }
 }

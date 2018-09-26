@@ -1,4 +1,5 @@
 <?php
+session_start();
 spl_autoload_register(function ($name)
 {
     include_once str_replace("\\", DIRECTORY_SEPARATOR, $name) . '.php';
@@ -17,7 +18,7 @@ if ("show" === $flag){
 
 <head>
 
-   <?php include_once 'header.html' ?>
+   <?php include_once 'Front/partials/header.html' ?>
 
 </head>
 
@@ -27,7 +28,7 @@ if ("show" === $flag){
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <?php include_once 'menu.php' ?>
+            <?php include_once 'Front/partials/menu.php' ?>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -42,6 +43,13 @@ if ("show" === $flag){
                     <div class="page-heading">
                         <h1><?php echo $showPost['title'] ?></h1>
                         <hr class="small">
+                        <?php if ( isset($_SESSION['username'])):?>
+
+                                <a href="edit_article.php?flag=update&id=<?php echo $showPost['id']?>">
+                                    <button type="submit" class="btn btn-default">Изменить</button>
+                                </a>
+
+                        <?php endif; ?>
                         <!--<span class="subheading">This is what I do.</span>-->
                     </div>
                 </div>
@@ -59,10 +67,9 @@ if ("show" === $flag){
             </div>
         </div>
     </div>
-
     <hr>
 
-    <?php include_once 'footer.html' ?>
+    <?php include_once 'Front/partials/footer.html' ?>
 
 </body>
 

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 spl_autoload_register(function ($name)
 {
     include_once str_replace("\\", DIRECTORY_SEPARATOR, $name) . '.php';
@@ -12,6 +14,14 @@ if ("store" === $flag) {
 }elseif ("edit" === $flag){
     $createPost = new \Controllers\PostsController;
     $createPost->edit($_POST['title'], $_POST['description'], $_POST['text'], $_POST['id']);
+}elseif ("aut" === $flag){
+    $createPost = new \Controllers\AutController();
+    $createPost->aut($_POST['login'], $_POST['password']);
+}
+
+if (isset($_GET['exit'])) {
+    unset($_SESSION['username']);
+    header('Location: /index.php');
 }
 ?>
 <!DOCTYPE html>
@@ -78,13 +88,14 @@ if ("store" === $flag) {
                     </a>
                     <p class="post-meta"><!-- Posted by <a href="#">Start Bootstrap</a> --> <?= $post['date'] ?></p>
                 </div>
-
                     <hr>
-                    <div class="form-group col-xs-6">
-                        <a href="edit_article.php?flag=update&id=<?= $post['id']?>">
-                            <button type="submit" class="btn btn-default">Изменить</button>
-                        </a>
-                    </div>
+                <?php if ( isset($_SESSION['username'])):?>
+                            <div class="form-group col-xs-6">
+                            <a href="edit_article.php?flag=update&id=<?= $post['id']?>">
+                                <button type="submit" class="btn btn-default">Изменить</button>
+                            </a>
+                        </div>
+                <?php endif; ?>
                     <!-- Pager -->
                     <ul class="pager">
                         <li class="next">

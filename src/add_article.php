@@ -1,3 +1,9 @@
+<?php
+session_start();
+if ( !isset($_SESSION['username'])) {
+    header('Location: /form_aut.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +17,7 @@
 
     <title>Добавть новую статью</title>
 
-<?php include_once 'header.html';?>
+<?php include_once 'Front/partials/header.html';?>
 
 </head>
 
@@ -22,7 +28,7 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
 
-            <?php include_once 'menu.php'; ?>
+            <?php include_once 'Front/partials/menu.php'; ?>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -129,7 +135,7 @@
         </div>
     </footer>
 
-<?php include_once 'footer.html' ?>
+<?php include_once 'Front/partials/footer.html' ?>
 
 </body>
 
