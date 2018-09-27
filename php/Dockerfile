@@ -1,5 +1,5 @@
 FROM php:7.2-fpm
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN apt-get update && apt-get install -y zlib1g-dev && docker-php-ext-install mysqli pdo pdo_mysql zip
 
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
 && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
