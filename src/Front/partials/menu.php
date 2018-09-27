@@ -26,7 +26,7 @@
         <?php
         if (isset($_SESSION['username'])):?>
         <li>
-            <a href="../../index.php?exit=1">Выйти</a>
+            <a href="../../index.php?flag=exit">Выйти</a>
         </li>
         <?php else: ?>
         <li>

@@ -8,7 +8,7 @@ class AutController
     private $login = 'admin';
     private $password  = 'admin';
 
-    public function aut($user, $password)
+    public function login($user, $password)
     {
         $password_hesh = password_hash($this->password, PASSWORD_DEFAULT);
 
@@ -20,6 +20,16 @@ class AutController
             //echo "Не верные данные для входа!";
             header('Location: /form_aut.php');
         }
+    }
 
+    /**
+     * @return string
+     */
+    public function loginOut($flag): string
+    {
+        if ($flag === 'exit') {
+            unset($_SESSION['username']);
+            header('Location: /index.php');
+        }
     }
 }

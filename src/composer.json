@@ -4,5 +4,11 @@
     "codeception/verify": "~0.3.1",
     "codeception/specify": "~0.4.3",
     "codeception/codeception": "^2.4"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "Controllers\\": "Controllers/"
+    }
   }
 }

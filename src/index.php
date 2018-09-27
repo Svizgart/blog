@@ -11,17 +11,15 @@ $flag = $_REQUEST['flag'] ?? null;
 if ("store" === $flag) {
     $createPost = new \Controllers\PostsController;
     $createPost->store($_POST['title'], $_POST['description'], $_POST['text']);
-}elseif ("edit" === $flag){
+}elseif ("edit" === $flag) {
     $createPost = new \Controllers\PostsController;
     $createPost->edit($_POST['title'], $_POST['description'], $_POST['text'], $_POST['id']);
-}elseif ("aut" === $flag){
-    $createPost = new \Controllers\AutController();
-    $createPost->aut($_POST['login'], $_POST['password']);
-}
-
-if (isset($_GET['exit'])) {
-    unset($_SESSION['username']);
-    header('Location: /index.php');
+}elseif ("aut" === $flag) {
+    $login = new \Controllers\AutController();
+    $login->login($_POST['login'], $_POST['password']);
+}elseif ("exit" === $flag) {
+    $loginOut = new \Controllers\AutController();
+    $loginOut->loginOut($flag);
 }
 ?>
 <!DOCTYPE html>
