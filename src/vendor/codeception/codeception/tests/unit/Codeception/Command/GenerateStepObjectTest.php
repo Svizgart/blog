@@ -15,7 +15,7 @@ class GenerateStepObjectTest extends BaseCommandRunner
 
     public function testBasic()
     {
-        $this->execute(array('suite' => 'shire', 'step' => 'Login', '--silent' => true));
+        $this->execute(array('suite' => 'shire', 'step' => 'authModel', '--silent' => true));
 
         $generated = $this->log[0];
         $this->assertEquals(\Codeception\Configuration::supportDir().'Step/Shire/Login.php', $generated['filename']);
@@ -29,7 +29,7 @@ class GenerateStepObjectTest extends BaseCommandRunner
     public function testNamespace()
     {
         $this->config['namespace'] = 'MiddleEarth';
-        $this->execute(array('suite' => 'shire', 'step' => 'Login', '--silent' => true));
+        $this->execute(array('suite' => 'shire', 'step' => 'authModel', '--silent' => true));
         $generated = $this->log[0];
         $this->assertEquals(\Codeception\Configuration::supportDir().'Step/Shire/Login.php', $generated['filename']);
         $this->assertContains('namespace MiddleEarth\Step\Shire;', $generated['content']);

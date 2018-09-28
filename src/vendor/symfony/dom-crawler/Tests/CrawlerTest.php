@@ -821,15 +821,15 @@ HTML;
         $crawler = new Crawler($html);
         $filtered = $crawler->filterXPath("descendant-or-self::*[@id = 'login-form']");
 
-        $this->assertCount(0, $filtered->selectLink('Login'));
+        $this->assertCount(0, $filtered->selectLink('authModel'));
         $this->assertCount(1, $filtered->selectButton('Submit'));
 
         $filtered = $crawler->filterXPath("descendant-or-self::*[@id = 'action']");
 
-        $this->assertCount(1, $filtered->selectLink('Login'));
+        $this->assertCount(1, $filtered->selectLink('authModel'));
         $this->assertCount(0, $filtered->selectButton('Submit'));
 
-        $this->assertCount(1, $crawler->selectLink('Login')->selectLink('Login'));
+        $this->assertCount(1, $crawler->selectLink('authModel')->selectLink('authModel'));
         $this->assertCount(1, $crawler->selectButton('Submit')->selectButton('Submit'));
     }
 

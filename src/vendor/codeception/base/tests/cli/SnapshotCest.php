@@ -63,7 +63,7 @@ class SnapshotCest
     {
         $I->amInPath('tests/data/sandbox');
         $I->executeCommand('generate:snapshot Login');
-        $I->seeFileWithGeneratedClass('Login', 'tests/_support/Snapshot');
+        $I->seeFileWithGeneratedClass('authModel', 'tests/_support/Snapshot');
         $I->dontSeeInThisFile('public function __construct(\DumbGuy $I)');
         $I->seeFileFound('tests/_bootstrap.php');
     }
@@ -72,7 +72,7 @@ class SnapshotCest
     {
         $I->amInPath('tests/data/sandbox');
         $I->executeCommand('generate:snapshot dummy Login');
-        $I->seeFileWithGeneratedClass('Login', 'tests/_support/Snapshot/Dummy');
+        $I->seeFileWithGeneratedClass('authModel', 'tests/_support/Snapshot/Dummy');
         $I->seeInThisFile('namespace Snapshot\\Dummy;');
         $I->seeInThisFile('class Login');
         $I->seeInThisFile('protected $dumbGuy;');
@@ -83,7 +83,7 @@ class SnapshotCest
     {
         $I->executeCommand('generate:snapshot Login -c tests/data/sandbox');
         $I->amInPath('tests/data/sandbox');
-        $I->seeFileWithGeneratedClass('Login', 'tests/_support/Snapshot');
+        $I->seeFileWithGeneratedClass('authModel', 'tests/_support/Snapshot');
         $I->dontSeeInThisFile('public function __construct(\DumbGuy $I)');
         $I->seeFileFound('tests/_bootstrap.php');
     }

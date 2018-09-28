@@ -14,11 +14,11 @@ if ("store" === $flag) {
 }elseif ("edit" === $flag) {
     $createPost = new \Controllers\PostsController;
     $createPost->edit($_POST['title'], $_POST['description'], $_POST['text'], $_POST['id']);
-}elseif ("aut" === $flag) {
-    $login = new \Controllers\AutController();
-    $login->login($_POST['login'], $_POST['password']);
+}elseif ("auth" === $flag) {
+    $login = new \Controllers\AuthController();
+    $login->login($_POST['authModel'], $_POST['password']);
 }elseif ("exit" === $flag) {
-    $loginOut = new \Controllers\AutController();
+    $loginOut = new \Controllers\AuthController();
     $loginOut->loginOut($flag);
 }
 ?>

@@ -421,7 +421,7 @@ abstract class TestsForWeb extends \Codeception\Test\Unit
         $this->module->amOnPage('/form/example1');
         $this->module->fillField('LoginForm[username]', 'davert');
         $this->module->fillField('LoginForm[password]', '123456');
-        $this->module->click('Login');
+        $this->module->click('authModel');
         $login = data::get('form');
         $this->assertEquals('davert', $login['LoginForm']['username']);
         $this->assertEquals('123456', $login['LoginForm']['password']);
@@ -950,11 +950,11 @@ abstract class TestsForWeb extends \Codeception\Test\Unit
     public function testExample1()
     {
         $this->module->amOnPage('/form/example1');
-        $this->module->see('Login', 'button');
+        $this->module->see('authModel', 'button');
         $this->module->fillField('#LoginForm_username', 'davert');
         $this->module->fillField('#LoginForm_password', '123456');
         $this->module->checkOption('#LoginForm_rememberMe');
-        $this->module->click('Login');
+        $this->module->click('authModel');
         $login = data::get('form');
         $this->assertEquals('davert', $login['LoginForm']['username']);
         $this->assertEquals('123456', $login['LoginForm']['password']);
@@ -970,7 +970,7 @@ abstract class TestsForWeb extends \Codeception\Test\Unit
         $login = data::get('form');
         $this->assertEquals('davert', $login['username']);
         $this->assertEquals('123456', $login['password']);
-        $this->assertEquals('login', $login['action']);
+        $this->assertEquals('authModel', $login['action']);
     }
 
     public function testAmpersand()
@@ -1000,7 +1000,7 @@ abstract class TestsForWeb extends \Codeception\Test\Unit
         $this->module->amOnPage('/form/example5');
         $this->module->fillField('username', 'John');
         $this->module->fillField('password', '1234');
-        $this->module->click('Login');
+        $this->module->click('authModel');
         $this->module->seeCurrentUrlEquals('/form/example5?username=John&password=1234');
     }
 
@@ -1016,7 +1016,7 @@ abstract class TestsForWeb extends \Codeception\Test\Unit
         $this->module->amOnPage('/form/example5?a=b');
         $this->module->fillField('username', 'John');
         $this->module->fillField('password', '1234');
-        $this->module->click('Login');
+        $this->module->click('authModel');
         $this->module->seeCurrentUrlEquals('/form/example5?username=John&password=1234');
     }
 

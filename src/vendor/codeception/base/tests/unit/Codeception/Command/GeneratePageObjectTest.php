@@ -18,7 +18,7 @@ class GeneratePageObjectTest extends BaseCommandRunner
     public function testBasic()
     {
         unset($this->config['actor']);
-        $this->execute(array('suite' => 'Login'), false);
+        $this->execute(array('suite' => 'authModel'), false);
         $this->assertEquals(\Codeception\Configuration::supportDir().'Page/Login.php', $this->filename);
         $this->assertContains('class Login', $this->content);
         $this->assertContains('public static', $this->content);
@@ -30,7 +30,7 @@ class GeneratePageObjectTest extends BaseCommandRunner
     {
         unset($this->config['actor']);
         $this->config['namespace'] = 'MiddleEarth';
-        $this->execute(array('suite' => 'Login'), false);
+        $this->execute(array('suite' => 'authModel'), false);
         $this->assertEquals(\Codeception\Configuration::supportDir().'Page/Login.php', $this->filename);
         $this->assertContains('namespace MiddleEarth\Page;', $this->content);
         $this->assertContains('class Login', $this->content);
@@ -40,7 +40,7 @@ class GeneratePageObjectTest extends BaseCommandRunner
 
     public function testCreateForSuite()
     {
-        $this->execute(array('suite' => 'shire', 'page' => 'Login'));
+        $this->execute(array('suite' => 'shire', 'page' => 'authModel'));
         $this->assertEquals(\Codeception\Configuration::supportDir().'Page/Shire/Login.php', $this->filename);
         $this->assertContains('namespace Page\Shire;', $this->content);
         $this->assertContains('class Login', $this->content);
@@ -52,7 +52,7 @@ class GeneratePageObjectTest extends BaseCommandRunner
     public function testCreateForSuiteWithNamespace()
     {
         $this->config['namespace'] = 'MiddleEarth';
-        $this->execute(array('suite' => 'shire', 'page' => 'Login'));
+        $this->execute(array('suite' => 'shire', 'page' => 'authModel'));
         $this->assertEquals(\Codeception\Configuration::supportDir().'Page/Shire/Login.php', $this->filename);
         $this->assertContains('namespace MiddleEarth\Page\Shire;', $this->content);
         $this->assertContains('class Login', $this->content);

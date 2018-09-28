@@ -29,7 +29,7 @@ if (isset($_SESSION['username'])) {
                 <button type="submit" class="btn btn-primary">Войти</button>
             </div>
         </div>
-        <input type="hidden" name="flag" value="aut">
+        <input type="hidden" name="flag" value="auth">
     </form>
 </div>
 

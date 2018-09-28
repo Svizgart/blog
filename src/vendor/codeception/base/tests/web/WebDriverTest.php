@@ -526,7 +526,7 @@ class WebDriverTest extends TestsForBrowsers
             ]),
         ]);
         $module = Stub::make(self::MODULE_CLASS, ['webDriver' => $fakeWd]);
-        $cest = new \Codeception\Test\Cest(new stdClass(), 'login', 'someCest.php');
+        $cest = new \Codeception\Test\Cest(new stdClass(), 'authModel', 'someCest.php');
         $module->_failed($cest, new \PHPUnit\Framework\AssertionFailedError());
     }
 
@@ -644,11 +644,11 @@ class WebDriverTest extends TestsForBrowsers
         $this->notForPhantomJS();
         $this->module->amOnPage('/');
         $this->module->setCookie('PHPSESSID', '123456', ['path' => '/']);
-        $this->module->saveSessionSnapshot('login');
+        $this->module->saveSessionSnapshot('authModel');
         $this->module->seeCookie('PHPSESSID');
         $this->webDriver->manage()->deleteAllCookies();
         $this->module->dontSeeCookie('PHPSESSID');
-        $this->module->loadSessionSnapshot('login');
+        $this->module->loadSessionSnapshot('authModel');
         $this->module->seeCookie('PHPSESSID');
     }
 
@@ -657,10 +657,10 @@ class WebDriverTest extends TestsForBrowsers
         $this->notForPhantomJS();
         $this->module->amOnPage('/');
         $this->module->setCookie('PHPSESSID', '123456', ['path' => '/']);
-        $this->module->saveSessionSnapshot('login');
+        $this->module->saveSessionSnapshot('authModel');
         $this->webDriver->manage()->deleteAllCookies();
-        $this->module->deleteSessionSnapshot('login');
-        $this->assertFalse($this->module->loadSessionSnapshot('login'));
+        $this->module->deleteSessionSnapshot('authModel');
+        $this->assertFalse($this->module->loadSessionSnapshot('authModel'));
         $this->module->dontSeeCookie('PHPSESSID');
     }
 
@@ -698,7 +698,7 @@ class WebDriverTest extends TestsForBrowsers
 
         $this->module->seeCookie('PHPSESSID');
         $this->module->seeCookie('3rdParty');
-        $this->module->saveSessionSnapshot('login');
+        $this->module->saveSessionSnapshot('authModel');
 
         // Restore the original WebDriver
         $this->module->webDriver = $originalWebDriver;
@@ -707,7 +707,7 @@ class WebDriverTest extends TestsForBrowsers
         $this->module->dontSeeCookie('PHPSESSID');
         $this->module->dontSeeCookie('3rdParty');
         $this->module->amOnPage('/');
-        $this->module->loadSessionSnapshot('login');
+        $this->module->loadSessionSnapshot('authModel');
         $this->module->seeCookie('PHPSESSID');
         $this->module->dontSeeCookie('3rdParty');
     }
@@ -1005,10 +1005,10 @@ class WebDriverTest extends TestsForBrowsers
         $this->module->performOn('.rememberMe', [
             'see' => 'Remember me next time',
             'seeElement' => '#LoginForm_rememberMe',
-            'dontSee' => 'Login'
+            'dontSee' => 'authModel'
         ]);
         $this->assertEquals(3, PHPUnit_Framework_Assert::getCount() - $asserts);
-        $this->module->see('Login');
+        $this->module->see('authModel');
     }
 
     public function testPerformOnWithCallback()
@@ -1018,10 +1018,10 @@ class WebDriverTest extends TestsForBrowsers
         $this->module->performOn('.rememberMe', function (\Codeception\Module\WebDriver $I) {
             $I->see('Remember me next time');
             $I->seeElement('#LoginForm_rememberMe');
-            $I->dontSee('Login');
+            $I->dontSee('authModel');
         });
         $this->assertEquals(3, PHPUnit_Framework_Assert::getCount() - $asserts);
-        $this->module->see('Login');
+        $this->module->see('authModel');
     }
 
     public function testPerformOnWithBuiltArray()
@@ -1031,10 +1031,10 @@ class WebDriverTest extends TestsForBrowsers
         $this->module->performOn('.rememberMe', \Codeception\Util\ActionSequence::build()
             ->see('Remember me next time')
             ->seeElement('#LoginForm_rememberMe')
-            ->dontSee('Login')
+            ->dontSee('authModel')
         );
         $this->assertEquals(3, PHPUnit_Framework_Assert::getCount() - $asserts);
-        $this->module->see('Login');
+        $this->module->see('authModel');
     }
 
     public function testPerformOnWithArrayAndSimilarActions()
@@ -1044,10 +1044,10 @@ class WebDriverTest extends TestsForBrowsers
         $this->module->performOn('.rememberMe', \Codeception\Util\ActionSequence::build()
             ->see('Remember me')
             ->see('next time')
-            ->dontSee('Login')
+            ->dontSee('authModel')
         );
         $this->assertEquals(3, PHPUnit_Framework_Assert::getCount() - $asserts);
-        $this->module->see('Login');
+        $this->module->see('authModel');
     }
 
     public function testPerformOnFail()
@@ -1064,7 +1064,7 @@ class WebDriverTest extends TestsForBrowsers
     {
         $this->shouldFail();
         $this->module->amOnPage('/form/example1');
-        $this->module->performOn('.rememberMe', ['see' => 'Login']);
+        $this->module->performOn('.rememberMe', ['see' => 'authModel']);
     }
 
     public function testSwitchToIframe()
