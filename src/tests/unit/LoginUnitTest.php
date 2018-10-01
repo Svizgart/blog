@@ -1,6 +1,7 @@
 <?php
 
 use Models\AuthModel;
+use Faker\Factory;
 
 class LoginUnitTest extends \Codeception\Test\Unit
 {
@@ -12,8 +13,7 @@ class LoginUnitTest extends \Codeception\Test\Unit
     private $loginTrue = 'admin';
     private $passwordTrue = 'admin';
 
-    private $loginFaker = 'qwerty';
-    private $passwordFaker = 'qwerty';
+    private $faker;
 
     protected function _before()
     {
@@ -31,22 +31,25 @@ class LoginUnitTest extends \Codeception\Test\Unit
     public function testLoginWithoutCorrectParameters()
     {
         $model = new AuthModel();
+        $this->faker = Factory::create();
 
-        $this->assertFalse($model->login($this->loginFaker, $this->passwordFaker));
+        $this->assertFalse($model->login($this->faker->userName(), $this->faker->password()));
     }
 
     public function testLoginFakerLogin()
     {
         $model = new AuthModel();
+        $this->faker = Factory::create();
 
-        $this->assertFalse($model->login($this->loginFaker, $this->passwordTrue));
+        $this->assertFalse($model->login($this->faker->userName(), $this->passwordTrue));
     }
 
-    public function testLoginFakerPassword(): string
+    public function testLoginFakerPassword()
     {
         $model = new AuthModel();
+        $this->faker = Factory::create();
 
-        $this->assertFalse($model->login($this->loginTrue, $this->passwordFaker));
+        $this->assertFalse($model->login($this->loginTrue, $this->faker->password()));
     }
 
     public function testLoginWithoutParameters()

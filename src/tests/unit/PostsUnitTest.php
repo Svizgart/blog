@@ -41,17 +41,12 @@ class PostsUnitTest extends \Codeception\Test\Unit
     public function testFormAddPostWithFullMargins()
     {
         $this->faker = Factory::create();
-        $title = $this->faker->text(100);
+        $title = $this->faker->text(50);
         $description = $this->faker->text(200);
         $text = $this->faker->text(400);
 
         $post = new PostsModel();
         $this->tester->assertTrue($post->store($title, $description, $text));
     }
-
-    /*public function testFormEditPost()
-    {
-        $post = new PostsModel();
-    }*/
 
 }

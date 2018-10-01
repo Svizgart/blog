@@ -9,7 +9,8 @@ $flag = $_REQUEST['flag'] ?? null;
 
 if ("show" === $flag){
     $onePost = new \Controllers\PostsController;
-    $showPost = $onePost->show($_GET['id']);
+    $showPost = $onePost->showPosts(intval($_GET['id']));
+
 }
 
 ?>
@@ -62,7 +63,12 @@ if ("show" === $flag){
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <?php
-                echo $showPost['text'];
+                    //function decode($type)
+                    //{
+                        $value = ['<script>', '</script>'/*, '<iframe>', '</iframe>',*/];
+                        echo  str_replace($value , " ", $showPost['text']);
+                    //}
+                    //call_user_func('decode', $showPost['text']);
                 ?>
             </div>
         </div>

@@ -44,15 +44,10 @@ class PostsModel
         $query = $this->db->connect()->prepare($sql);
         if (!empty($title) && !empty($description) && !empty($text) && $error ===[]) {
             $query->execute([
-
-                ':title' => trim($title),
-
-                ':description' => trim($description),
-
-                ':text' => trim($text),
-
+                ':title' => $title,
+                ':description' => $description,
+                ':text' => $text,
                 ':data_post' => date('Y-m-d H-i-s'),
-
                 ]);
 
             return true;
@@ -65,7 +60,6 @@ class PostsModel
     public function edit($title, $description, $text, $id)
     {
         $error = $this->validate($title, $description, $text);
-        //var_dump($error);
         $data_pas = date('Y-m-d H-i-s');
 
         if (!empty($id) && !empty($title) && !empty($description)  && !empty($text) && $error === []) {
@@ -77,9 +71,9 @@ class PostsModel
                 ->connect()
                 ->prepare($sql);
 
-            $stmt->bindValue(':title', $title);
-            $stmt->bindValue(':description', $description);
-            $stmt->bindValue(':text_post', $text);
+            $stmt->bindValue(':title', strip_tags($title));
+            $stmt->bindValue(':description', strip_tags($description));
+            $stmt->bindValue(':text_post', htmlentities($text));
             $stmt->bindValue(':date_pas', $data_pas);
             $stmt->bindValue(':id', $id);
 

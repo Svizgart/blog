@@ -10,6 +10,13 @@ class PostsController
     private $model;
     private $db;
 
+    private function formatString($str)
+    {
+        $str = trim($str);
+        $str = stripslashes($str);
+        return $str;
+    }
+
     public function __construct()
     {
         $this->model = new PostsModel();
@@ -29,7 +36,7 @@ class PostsController
     public function store($title, $description, $text)
     {
         if (isset($_SESSION['username'])){
-            if ($this->model->store($title, $description, $text)) {
+            if ($this->model->store($this->formatString($title), $this->formatString($description), $text)) {
                 header('Location: /index.php');
             }else{
                 header('Location: /add_article.php');
@@ -44,10 +51,10 @@ class PostsController
         return $this->model->update($id);
     }
 
-    public function edit(string $title, string $description, string $text, int $id)
+    public function edit($title,$description,$text, $id)
     {
         if (isset($_SESSION['username'])){
-            if ($this->model->edit($title, $description, $text, $id)) {
+            if ($this->model->edit($this->formatString($title), $this->formatString($description), $text, $id)) {
                 header('Location: /index.php');
             }
 

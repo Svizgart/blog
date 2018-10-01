@@ -9,7 +9,7 @@ $flag = $_REQUEST['flag'] ?? null;
 
 if ("update" === $flag) {
     $onePost = new \Controllers\PostsController();
-    $editPost = $onePost->update($_GET['id']);
+    $editPost = $onePost->update(intval($_GET['id']));
 }
  if ( !isset($_SESSION['username'])){
     header('Location: /form_aut.php');
