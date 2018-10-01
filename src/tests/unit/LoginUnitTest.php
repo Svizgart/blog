@@ -1,6 +1,6 @@
 <?php
 
-use Controllers\AuthController;
+use Models\AuthModel;
 
 class LoginUnitTest extends \Codeception\Test\Unit
 {
@@ -30,20 +30,37 @@ class LoginUnitTest extends \Codeception\Test\Unit
     // tests
     public function testLoginWithoutCorrectParameters()
     {
+        $model = new AuthModel();
 
-        $model = new AuthController();
+        $this->assertFalse($model->login($this->loginFaker, $this->passwordFaker));
+    }
 
-        //$model->login($this->loginFaker, $this->passwordFaker);
-        expect($this->tester->assertEqual);
+    public function testLoginFakerLogin()
+    {
+        $model = new AuthModel();
+
+        $this->assertFalse($model->login($this->loginFaker, $this->passwordTrue));
+    }
+
+    public function testLoginFakerPassword(): string
+    {
+        $model = new AuthModel();
+
+        $this->assertFalse($model->login($this->loginTrue, $this->passwordFaker));
     }
 
     public function testLoginWithoutParameters()
     {
+        $login = '';
+        $password = '';
 
+        $model = new AuthModel();
+        $this->assertFalse($model->login($login, $password));
     }
 
     public function testLoginCorrectParameters()
     {
-
+        $model = new AuthModel();
+        $this->assertTrue($model->login($this->loginTrue, $this->passwordTrue));
     }
 }

@@ -2,19 +2,17 @@
 
 namespace Controllers;
 
-use AuthModel;
-
+use Models\AuthModel;
 
 class AuthController
 {
-
     public function login($user, $password)
     {
         $model = new AuthModel();
         if ($model->login($user, $password)) {
             header('Location: /index.php');
         }else{
-            header('Location: /form_aut.php');
+            header('Location: /form_auth.php');
         }
     }
 

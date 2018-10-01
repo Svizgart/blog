@@ -30,7 +30,7 @@
         </li>
         <?php else: ?>
         <li>
-            <a href="../../form_aut.php">Войти</a>
+            <a href="../../form_auth.php">Войти</a>
         </li>
         <?php endif; ?>
     </ul>

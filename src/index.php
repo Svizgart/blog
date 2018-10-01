@@ -16,7 +16,7 @@ if ("store" === $flag) {
     $createPost->edit($_POST['title'], $_POST['description'], $_POST['text'], $_POST['id']);
 }elseif ("auth" === $flag) {
     $login = new \Controllers\AuthController();
-    $login->login($_POST['authModel'], $_POST['password']);
+    $login->login($_POST['login'], $_POST['password']);
 }elseif ("exit" === $flag) {
     $loginOut = new \Controllers\AuthController();
     $loginOut->loginOut($flag);
@@ -72,7 +72,6 @@ if ("store" === $flag) {
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <?php
                 $getPosts = new Controllers\PostsController();
-
                 foreach ($getPosts->index() as $post):?>
 
                 <div class="post-preview">

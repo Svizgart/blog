@@ -1,4 +1,5 @@
 <?php
+
 namespace Models;
 
 class AuthModel
@@ -9,12 +10,12 @@ class AuthModel
     public function login($user, $password)
     {
         $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
-
-        if (trim($user) === $this->login && password_verify(trim($password), $password_hash)) {
+        if (trim($user) === $this->login && password_verify(trim($password), $password_hash) === true) {
             $_SESSION['username'] = $user;
 
             return true;
         }else{
+
             return false;
         }
     }
@@ -26,6 +27,7 @@ class AuthModel
 
             return true;
         }else{
+
             return false;
         }
     }

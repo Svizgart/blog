@@ -11,7 +11,7 @@
 
     <title>Clean Blog - Contact</title>
 
-   <?php include_once 'header.html' ?>
+   <?php include_once 'partials/header.html' ?>
 
 </head>
 
@@ -21,7 +21,7 @@
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <?php include_once 'menu.php' ?>
+            <?php include_once 'partials/menu.php' ?>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -94,7 +94,7 @@
 
     <hr>
 
-    <?php include_once 'footer.html' ?>
+    <?php include_once 'partials/footer.html' ?>
 
 </body>
 

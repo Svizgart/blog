@@ -37,10 +37,15 @@ class ComposerStaticInita0df87507f75c33b3b14802b4f2e9eef
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\BrowserKit\\' => 29,
+            'Services\\' => 9,
         ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
+        ),
+        'M' => 
+        array (
+            'Models\\' => 7,
         ),
         'G' => 
         array (
@@ -50,6 +55,7 @@ class ComposerStaticInita0df87507f75c33b3b14802b4f2e9eef
         ),
         'F' => 
         array (
+            'Faker\\' => 6,
             'Facebook\\WebDriver\\' => 19,
         ),
         'D' => 
@@ -117,9 +123,17 @@ class ComposerStaticInita0df87507f75c33b3b14802b4f2e9eef
         array (
             0 => __DIR__ . '/..' . '/symfony/browser-kit',
         ),
+        'Services\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Services',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Models',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -132,6 +146,10 @@ class ComposerStaticInita0df87507f75c33b3b14802b4f2e9eef
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Faker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
         ),
         'Facebook\\WebDriver\\' => 
         array (
