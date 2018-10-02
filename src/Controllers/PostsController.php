@@ -13,7 +13,6 @@ class PostsController
     private function formatString($str)
     {
         $str = trim($str);
-        $str = stripslashes($str);
         return $str;
     }
 
@@ -54,13 +53,19 @@ class PostsController
     public function edit($title,$description,$text, $id)
     {
         if (isset($_SESSION['username'])){
-            if ($this->model->edit($this->formatString($title), $this->formatString($description), $text, $id)) {
-                header('Location: /index.php');
-            }
+            $error = $this->model->validate($title, $description, $text);
 
+            if (!empty($id) && !empty($title) && !empty($description)  && !empty($text) && $error === []) {
+                if ($this->model->edit($this->formatString($title), $this->formatString($description), $text, $id)) {
+                    header('Location: /index.php');
+                }
+            }else{
+            header("Location: /edit_article.php?flag=update&id=$id");
+        }
         }else{
             header('Location: /form_auth.php');
         }
+
         return false;
     }
 }

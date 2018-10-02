@@ -10,7 +10,7 @@ class AuthController
     {
         $str = trim($str);
         $str = stripslashes($str);
-        $str = htmlspecialchars($str);
+        $str = strip_tags($str);
         return $str;
     }
 

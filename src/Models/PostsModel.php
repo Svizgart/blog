@@ -4,15 +4,8 @@ namespace Models;
 
 use Services\PdoConnection;
 
-class PostsModel
+class PostsModel extends Model
 {
-    protected $db;
-
-    public function __construct()
-    {
-        $this->db = new PdoConnection();
-    }
-
     public function allPosts()
     {
         return $this->db
@@ -59,35 +52,28 @@ class PostsModel
 
     public function edit($title, $description, $text, $id)
     {
-        $error = $this->validate($title, $description, $text);
         $data_pas = date('Y-m-d H-i-s');
+        $sql = "UPDATE posts 
+              SET title = :title, description = :description, text = :text_post, date = :date_pas 
+              where id = :id";
+        $stmt = $this->db
+            ->connect()
+            ->prepare($sql);
 
-        if (!empty($id) && !empty($title) && !empty($description)  && !empty($text) && $error === []) {
+        $stmt->bindValue(':title', strip_tags($title));
+        $stmt->bindValue(':description', strip_tags($description));
+        $stmt->bindValue(':text_post', $text);
+        $stmt->bindValue(':date_pas', $data_pas);
+        $stmt->bindValue(':id', $id);
 
-            $sql = "UPDATE posts 
-                    SET title = :title, description = :description, text = :text_post, date = :date_pas 
-                    where id = :id";
-            $stmt = $this->db
-                ->connect()
-                ->prepare($sql);
-
-            $stmt->bindValue(':title', strip_tags($title));
-            $stmt->bindValue(':description', strip_tags($description));
-            $stmt->bindValue(':text_post', htmlentities($text));
-            $stmt->bindValue(':date_pas', $data_pas);
-            $stmt->bindValue(':id', $id);
-
-            if ($stmt->execute()) {
-                return true;
-            }else{
-                return false;
-            }
+        if ($stmt->execute()) {
+            return true;
         }else{
-            header("Location: /edit_article.php?flag=update&id=$id");
+            return false;
         }
     }
 
-    private function validate($title, $description, $text)
+    public function validate($title, $description, $text)
     {
         $error = [];
 

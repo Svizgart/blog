@@ -90,14 +90,14 @@ if ("update" === $flag) {
                         <label>Text*</label>
                         <div id="editor">
                             <textarea name="text" id='edit' style="margin-top: 30px;">
-                                <?php echo $editPost['text']?>
+                                <?= $editPost['text']?>
                             </textarea>
                         </div>
                     </div>
                 </div>
 
                 <input type="hidden" name="flag" value="edit">
-                <input type="hidden" name="id" value="<?php echo $editPost['id']?>">
+                <input type="hidden" name="id" value="<?= $editPost['id']?>">
 
                 <br>
                 <div id="success"></div>
