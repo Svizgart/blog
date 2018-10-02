@@ -84,6 +84,25 @@ if ("store" === $flag) {
                         </h3>
                     </a>
                     <p class="post-meta"><!-- Posted by <a href="#">Start Bootstrap</a> --> <?= $post['date'] ?></p>
+
+                    <!-- решение от жеки попова 2010-->
+                    <!--<div id="raiting_stare">
+                        <div class="body_raiting">
+                            <div id="raiting_star">
+                                <div id="raiting">
+                                    <div id="raiting_blank"></div>
+                                    <div id="raiting_hover"></div>
+                                    <div id="raiting_votes"></div>
+                                </div>
+                                <div id="raiting_info"><img src="./img/load.gif"/> <h5> Рейтинг статьи: </h5></div>
+                            </div>
+                        </div>
+                    </div>-->
+
+                    <?php //"<div class='basic' data-average='5' data-id='" . $post['id'] . "' ></div>" ?>
+                    <!--<div class="basic" data-average='5' data-id="<?/*= $post['id']*/?>"></div>-->
+                    <!--<div class="jRating" data="8.5_2"></div>-->
+
                 </div>
                     <hr>
                 <?php if ( isset($_SESSION['username'])):?>
