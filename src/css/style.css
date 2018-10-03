@@ -1,11 +1,28 @@
+.rating label {
+    padding-top: 10px;
+    float: none;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    cursor: pointer; }
+.rating label:not(:first-of-type) {
+    padding-right: 2px; }
+.rating label:before {
+    content: "\2605";
+    font-size: 22px;
+    color: #a6a6a6;
+    line-height: 1; }
 
-/* решение от жеки попова 2010*/
-/*
-#raiting {position:relative; height:16px; cursor:pointer; width:83px; float:left} !* Блок рейтинга*!
-#raiting_blank, #raiting_votes, #raiting_hover {height:16px; position:absolute}
-#raiting_blank { background:url(../img/ratings.png); width:83px; } !* "Чистые" звездочки *!
-#raiting_votes {background:url(../img/ratings.png) 0 -16px} !*  Закрашенные звездочки *!
-#raiting_hover {background:url(../img/ratings.png) 0 -32px; display:none}  !*  звездочки при голосовании *!
-#raiting_info {margin-left:100px}
-#raiting_info img{vertical-align:middle; margin:0 5px; display:none}
-*/
+.rating input {
+    display: none; }
+
+.rating input:checked ~ label:before,
+.rating:not(:checked) > label:hover:before,
+.rating:not(:checked) > label:hover ~ label:before {
+    color: #ffe000; }
+
+@media (min-width: 768px) {
+    .rating {
+        padding: 0 10px; }
+    .rating label {
+        float: right; } }

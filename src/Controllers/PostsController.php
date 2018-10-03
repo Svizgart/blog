@@ -68,4 +68,9 @@ class PostsController
 
         return false;
     }
+
+    public function rating ($value, $id, $rating_db, $rait_count)
+    {
+        return $this->model->rating($value, $id, $rating_db, $rait_count);
+    }
 }

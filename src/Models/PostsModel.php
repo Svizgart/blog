@@ -73,6 +73,21 @@ class PostsModel extends Model
         }
     }
 
+    public function rating($value, $id, $rating_db, $rait_count)
+    {
+        $sql = "UPDATE posts 
+                SET rating = :rating_summ, rait_count = :rait_count  
+                WHERE id = :id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute([
+            ':rating_summ' => $value + $rating_db,
+            ':rait_count' => $rait_count + 1,
+            ':id' => $id
+        ]);
+
+        return true;
+    }
+
     public function validate($title, $description, $text)
     {
         $error = [];

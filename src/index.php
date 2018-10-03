@@ -21,6 +21,11 @@ if ("store" === $flag) {
     $loginOut = new \Controllers\AuthController();
     $loginOut->loginOut($flag);
 }
+
+if (isset($_POST['value']) && isset($_POST['id'])) {
+    $loginOut = new \Controllers\PostsController();
+    $loginOut->rating(intval($_POST['value']), intval($_POST['id']), intval($_POST['rating_db']), intval($_POST['rait_count']));
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,25 +88,9 @@ if ("store" === $flag) {
                             <?= $post['description']?>
                         </h3>
                     </a>
-                    <p class="post-meta"><!-- Posted by <a href="#">Start Bootstrap</a> --> <?= $post['date'] ?></p>
-
-                    <!-- решение от жеки попова 2010-->
-                    <!--<div id="raiting_stare">
-                        <div class="body_raiting">
-                            <div id="raiting_star">
-                                <div id="raiting">
-                                    <div id="raiting_blank"></div>
-                                    <div id="raiting_hover"></div>
-                                    <div id="raiting_votes"></div>
-                                </div>
-                                <div id="raiting_info"><img src="./img/load.gif"/> <h5> Рейтинг статьи: </h5></div>
-                            </div>
-                        </div>
-                    </div>-->
-
-                    <?php //"<div class='basic' data-average='5' data-id='" . $post['id'] . "' ></div>" ?>
-                    <!--<div class="basic" data-average='5' data-id="<?/*= $post['id']*/?>"></div>-->
-                    <!--<div class="jRating" data="8.5_2"></div>-->
+                    <p class="post-meta"><!-- Posted by <a href="#">Start Bootstrap</a> -->
+                        <?= "Рейтинг - " . round($post['rating'] / $post['rait_count']) . "<br>" . $post['date'] ?>
+                    </p>
 
                 </div>
                     <hr>
